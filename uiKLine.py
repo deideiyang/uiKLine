@@ -159,6 +159,7 @@ class CustomViewBox(pg.ViewBox):
 ########################################################################
 class MyStringAxis(pg.AxisItem):
     """时间序列横坐标支持"""
+
     # 初始化
     #----------------------------------------------------------------------
     def __init__(self, xdict, *args, **kwargs):
@@ -169,8 +170,8 @@ class MyStringAxis(pg.AxisItem):
         self.x_values = np.asarray(xdict.keys())
         self.x_strings = xdict.values()
         self.setPen(color=(255, 255, 255, 255), width=0.8)
-        self.setStyle(tickFont=QFont("Roman times", 10, QFont.Bold),
-                      autoExpandTextSpace=True)
+        # self.setStyle(tickFont=QFont("Roman times", 10, QFont.Bold),
+        #               autoExpandTextSpace=True)
 
     # 更新坐标映射表
     #----------------------------------------------------------------------
@@ -401,9 +402,7 @@ class KLineWidget(KeyWraper):
     def makePI(self, name):
         """生成PlotItem对象"""
         vb = CustomViewBox()
-        plotItem = pg.PlotItem(viewBox=vb,
-                               name=name,
-                               axisItems={'bottom': self.axisTime})
+        plotItem = pg.PlotItem(viewBox=vb, name=name)
         plotItem.setMenuEnabled(False)
         plotItem.setClipToView(True)
         plotItem.hideAxis('left')
